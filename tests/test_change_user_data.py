@@ -24,6 +24,9 @@ class TestChangeUserData:
             ('name', {'name': UserData.create_random_data_user()['name']})
         ]
     )
+    @allure.title("Изменение данных авторизованного пользователя")
+    @allure.description("Проверяет возможность изменения данных авторизованного пользователя. "
+                        "Отправляет PATCH-запрос для обновления определённого поля с новыми значениями.")
     def test_change_authorized_user_data(self, create_user_authorization, new_field, new_value):
         token = {'authorization': create_user_authorization[1]}
         response = requests.patch(f'{Urls.URL_MAIN_PAGE}{Handlers.Handler.USER_INFORMATION}', data=new_value,

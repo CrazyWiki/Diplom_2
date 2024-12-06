@@ -3,7 +3,7 @@ import allure
 import test_data.handlers as Handlers
 from test_data.urls import Urls as Urls
 from test_data.ingredients import Ingredients
-#from conftest import create_user_authorization
+
 
 
 class TestCreateOrder:
