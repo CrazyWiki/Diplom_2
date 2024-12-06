@@ -10,7 +10,6 @@ class TestGetUserOrders:
         "Тест проверяет, что неавторизованный пользователь не может получить список заказов и получает статус 401.")
     def test_get_unauthorized_user_orders(self):
         response_get_orders_list = requests.get(f'{Urls.URL_MAIN_PAGE}{Handlers.Handler.USER_ORDERS}')
-        x = response_get_orders_list.json()
         assert response_get_orders_list.status_code == 401 and response_get_orders_list.json().get("success") == False
 
 
@@ -20,6 +19,4 @@ class TestGetUserOrders:
         token = {'authorization': create_user_authorization[1]}
         response_create_order = requests.post(f'{Urls.URL_MAIN_PAGE}{Handlers.Handler.CREATE_ORDER}',data=Ingredients.DATA_INGREDIENT_CORRECT_IDS, headers=token)
         response_get_orders_list = requests.get(f'{Urls.URL_MAIN_PAGE}{Handlers.Handler.USER_ORDERS}',headers=token)
-        z=response_create_order.json()
-        x=response_get_orders_list.json()
         assert response_get_orders_list.json()['orders'][0]['_id']==response_create_order.json()['order']['_id']
